@@ -1,0 +1,254 @@
+
+----- Arguments:
+seed=42, local_rank=0, dp=1, pp=2, pp_scheduler=gpipe, distributed=True, world_size=2, dataset=imagenet, batch_size=128, microbatches=4, model_name=resnet50, checkpoint=None, pretrained=False, optimizer=adam, scheduler=None, learning_rate=0.001, early_stop=False, num_epochs=300, warmup_epochs=5, run_name=None, save_dir=None, log_freq=100, wandb=False, pp_rank=0, dp_rank=0, master_rank=0, master_dp_rank=0
+
+
+Data will be loaded from : /data2/yjlee/TF/imagenet/images
+
+Data will be loaded from : /data2/yjlee/TF/imagenet/images
+
+Total Model : 181.53M params
+Pipeline stage 0 [7 layers] : 72.49M params
+Pipeline stage 1 [4 layers] : 109.04M params
+
+Epoch 1/300
+----------
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:04:15.437 *input => 0.000
+        [RANK0] [micro0] fwd_send - 15:04:15.446           0.000-> 
+        [RANK1] [micro0] fwd_recv - 15:04:15.461        -> 0.000
+        [RANK1] [micro0] forward  - 15:04:15.462 *0.000 => output
+        [RANK1] [micro0] fwd_send - 15:04:15.466           fwd-end-> 
+        [RANK0] [micro1] forward  - 15:04:15.462 *input => 0.000
+        [RANK0] [micro1] fwd_send - 15:04:15.478           0.000-> 
+        [RANK1] [micro1] fwd_recv - 15:04:15.468        -> 0.000
+        [RANK1] [micro1] forward  - 15:04:15.479 *0.000 => output
+        [RANK1] [micro1] fwd_send - 15:04:15.483           fwd-end-> 
+        [RANK0] [micro2] forward  - 15:04:15.479 *input => 1.563
+        [RANK0] [micro2] fwd_send - 15:04:15.491           1.563-> 
+        [RANK1] [micro2] fwd_recv - 15:04:15.483        -> 1.563
+        [RANK1] [micro2] forward  - 15:04:15.492 *1.563 => output
+        [RANK1] [micro2] fwd_send - 15:04:15.496           fwd-end-> 
+        [RANK0] [micro3] forward  - 15:04:15.492 *input => 1.887
+        [RANK0] [micro3] fwd_send - 15:04:15.504           1.887-> 
+        [RANK1] [micro3] fwd_recv - 15:04:15.496        -> 1.887
+        [RANK1] [micro3] forward  - 15:04:15.505 *1.887 => output
+        [RANK1] [micro3] fwd_send - 15:04:15.508           fwd-end-> 
+        [RANK1] [micro0] backward - 15:04:15.509 *loss => 0.004
+        [RANK1] [micro0] bwd_send - 15:04:15.528 
+        [RANK0] [micro0] bwd_recv - 15:04:15.540        -> 0.004
+        [RANK1] [micro1] backward - 15:04:15.540 *loss => 0.004
+        [RANK1] [micro1] bwd_send - 15:04:15.549 
+        [RANK1] [micro2] backward - 15:04:15.550 *loss => 0.004
+        [RANK1] [micro2] bwd_send - 15:04:15.559 
+        [RANK1] [micro3] backward - 15:04:15.560 *loss => 0.004
+        [RANK1] [micro3] bwd_send - 15:04:15.570 
+        [RANK1] update_losses - 15:04:15.571
+        [RANK1] finished - 15:04:15.571
+        [RANK0] [micro0] backward - 15:04:15.541 *0.004 => bwd-end
+        [RANK0] [micro0] bwd_send - 15:04:15.586 
+        [RANK0] [micro1] bwd_recv - 15:04:15.588        -> 0.004
+        [RANK0] [micro1] backward - 15:04:15.588 *0.004 => bwd-end
+        [RANK0] [micro1] bwd_send - 15:04:15.601 
+        [RANK0] [micro2] bwd_recv - 15:04:15.602        -> 0.004
+        [RANK0] [micro2] backward - 15:04:15.603 *0.004 => bwd-end
+        [RANK0] [micro2] bwd_send - 15:04:15.616 
+        [RANK0] [micro3] bwd_recv - 15:04:15.617        -> 0.004
+        [RANK0] [micro3] backward - 15:04:15.618 *0.004 => bwd-end
+        [RANK0] [micro3] bwd_send - 15:04:15.631 
+        [RANK0] update_losses - 15:04:15.631
+        [RANK0] finished - 15:04:15.632
+[RANK1] forward DONE
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:04:16.357 *input => 5.340
+        [RANK0] [micro0] fwd_send - 15:04:16.369           5.340-> 
+        [RANK1] [micro0] fwd_recv - 15:04:16.373        -> 5.340
+        [RANK1] [micro0] forward  - 15:04:16.373 *5.340 => output
+        [RANK1] [micro0] fwd_send - 15:04:16.377           fwd-end-> 
+        [RANK0] [micro1] forward  - 15:04:16.370 *input => 0.000
+        [RANK0] [micro1] fwd_send - 15:04:16.380           0.000-> 
+        [RANK1] [micro1] fwd_recv - 15:04:16.378        -> 0.000
+        [RANK1] [micro1] forward  - 15:04:16.382 *0.000 => output
+        [RANK1] [micro1] fwd_send - 15:04:16.385           fwd-end-> 
+        [RANK0] [micro2] forward  - 15:04:16.381 *input => 2.591
+        [RANK0] [micro2] fwd_send - 15:04:16.391           2.591-> 
+        [RANK1] [micro2] fwd_recv - 15:04:16.386        -> 2.591
+        [RANK1] [micro2] forward  - 15:04:16.392 *2.591 => output
+        [RANK1] [micro2] fwd_send - 15:04:16.395           fwd-end-> 
+        [RANK0] [micro3] forward  - 15:04:16.392 *input => 0.000
+        [RANK0] [micro3] fwd_send - 15:04:16.411           0.000-> 
+        [RANK1] [micro3] fwd_recv - 15:04:16.396        -> 0.000
+        [RANK1] [micro3] forward  - 15:04:16.412 *0.000 => output
+        [RANK1] [micro3] fwd_send - 15:04:16.415           fwd-end-> 
+        [RANK1] [micro0] backward - 15:04:16.416 *loss => 0.004
+        [RANK1] [micro0] bwd_send - 15:04:16.423 
+        [RANK0] [micro0] bwd_recv - 15:04:16.412        -> 0.004
+        [RANK1] [micro1] backward - 15:04:16.423 *loss => 0.004
+        [RANK1] [micro1] bwd_send - 15:04:16.432 
+        [RANK0] [micro0] backward - 15:04:16.423 *0.004 => bwd-end
+        [RANK0] [micro0] bwd_send - 15:04:16.440 
+        [RANK0] [micro1] bwd_recv - 15:04:16.441        -> 0.004
+        [RANK1] [micro2] backward - 15:04:16.433 *loss => 0.004
+        [RANK1] [micro2] bwd_send - 15:04:16.441 
+        [RANK1] [micro3] backward - 15:04:16.442 *loss => 0.004
+        [RANK1] [micro3] bwd_send - 15:04:16.452 
+        [RANK0] [micro1] backward - 15:04:16.441 *0.004 => bwd-end
+        [RANK1] update_losses - 15:04:16.453
+        [RANK0] [micro1] bwd_send - 15:04:16.454 
+        [RANK1] finished - 15:04:16.454
+        [RANK0] [micro2] bwd_recv - 15:04:16.455        -> 0.004
+        [RANK0] [micro2] backward - 15:04:16.455 *0.004 => bwd-end
+        [RANK0] [micro2] bwd_send - 15:04:16.468 
+        [RANK0] [micro3] bwd_recv - 15:04:16.469        -> 0.004
+        [RANK0] [micro3] backward - 15:04:16.470 *0.004 => bwd-end
+        [RANK0] [micro3] bwd_send - 15:04:16.482 
+        [RANK0] update_losses - 15:04:16.483
+        [RANK0] finished - 15:04:16.483
+[RANK1] forward DONE
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:04:17.397 *input => 2.937
+        [RANK0] [micro0] fwd_send - 15:04:17.406           2.937-> 
+        [RANK1] [micro0] fwd_recv - 15:04:17.390        -> 2.937
+        [RANK1] [micro0] forward  - 15:04:17.407 *2.937 => output
+        [RANK1] [micro0] fwd_send - 15:04:17.410           fwd-end-> 
+        [RANK0] [micro1] forward  - 15:04:17.407 *input => 0.497
+        [RANK0] [micro1] fwd_send - 15:04:17.416           0.497-> 
+        [RANK1] [micro1] fwd_recv - 15:04:17.411        -> 0.497
+        [RANK1] [micro1] forward  - 15:04:17.417 *0.497 => output
+        [RANK1] [micro1] fwd_send - 15:04:17.420           fwd-end-> 
+        [RANK0] [micro2] forward  - 15:04:17.417 *input => 0.563
+        [RANK0] [micro2] fwd_send - 15:04:17.425           0.563-> 
+        [RANK1] [micro2] fwd_recv - 15:04:17.420        -> 0.563
+        [RANK1] [micro2] forward  - 15:04:17.426 *0.563 => output
+        [RANK1] [micro2] fwd_send - 15:04:17.429           fwd-end-> 
+        [RANK0] [micro3] forward  - 15:04:17.426 *input => 0.194
+        [RANK0] [micro3] fwd_send - 15:04:17.434           0.194-> 
+        [RANK1] [micro3] fwd_recv - 15:04:17.430        -> 0.194
+        [RANK1] [micro3] forward  - 15:04:17.435 *0.194 => output
+        [RANK1] [micro3] fwd_send - 15:04:17.438           fwd-end-> 
+        [RANK1] [micro0] backward - 15:04:17.438 *loss => 0.005
+        [RANK1] [micro0] bwd_send - 15:04:17.445 
+        [RANK0] [micro0] bwd_recv - 15:04:17.435        -> 0.005
+        [RANK1] [micro1] backward - 15:04:17.445 *loss => 0.004
+        [RANK1] [micro1] bwd_send - 15:04:17.453 
+        [RANK0] [micro0] backward - 15:04:17.445 *0.005 => bwd-end
+        [RANK0] [micro0] bwd_send - 15:04:17.462 
+        [RANK1] [micro2] backward - 15:04:17.454 *loss => 0.004
+        [RANK1] [micro2] bwd_send - 15:04:17.462 
+        [RANK0] [micro1] bwd_recv - 15:04:17.462        -> 0.004
+        [RANK1] [micro3] backward - 15:04:17.463 *loss => 0.004
+        [RANK1] [micro3] bwd_send - 15:04:17.472 
+        [RANK1] update_losses - 15:04:17.472
+        [RANK1] finished - 15:04:17.473
+        [RANK0] [micro1] backward - 15:04:17.463 *0.004 => bwd-end
+        [RANK0] [micro1] bwd_send - 15:04:17.475 
+        [RANK0] [micro2] bwd_recv - 15:04:17.476        -> 0.004
+        [RANK0] [micro2] backward - 15:04:17.477 *0.004 => bwd-end
+        [RANK0] [micro2] bwd_send - 15:04:17.490 
+        [RANK0] [micro3] bwd_recv - 15:04:17.491        -> 0.004
+        [RANK0] [micro3] backward - 15:04:17.491 *0.004 => bwd-end
+        [RANK0] [micro3] bwd_send - 15:04:17.504 
+        [RANK0] update_losses - 15:04:17.505
+        [RANK0] finished - 15:04:17.505
+[RANK1] forward DONE
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:04:18.340 *input => 0.000
+        [RANK0] [micro0] fwd_send - 15:04:18.349           0.000-> 
+        [RANK1] [micro0] fwd_recv - 15:04:18.356        -> 0.000
+        [RANK0] [micro1] forward  - 15:04:18.350 *input => 0.000
+        [RANK0] [micro1] fwd_send - 15:04:18.359           0.000-> 
+        [RANK1] [micro0] forward  - 15:04:18.356 *0.000 => output
+        [RANK1] [micro0] fwd_send - 15:04:18.359           fwd-end-> 
+        [RANK1] [micro1] fwd_recv - 15:04:18.360        -> 0.000
+        [RANK1] [micro1] forward  - 15:04:18.360 *0.000 => output
+        [RANK1] [micro1] fwd_send - 15:04:18.363           fwd-end-> 
+        [RANK0] [micro2] forward  - 15:04:18.360 *input => 2.842
+        [RANK0] [micro2] fwd_send - 15:04:18.368           2.842-> 
+        [RANK1] [micro2] fwd_recv - 15:04:18.364        -> 2.842
+        [RANK1] [micro2] forward  - 15:04:18.369 *2.842 => output
+        [RANK1] [micro2] fwd_send - 15:04:18.372           fwd-end-> 
+        [RANK0] [micro3] forward  - 15:04:18.369 *input => 2.403
+        [RANK0] [micro3] fwd_send - 15:04:18.377           2.403-> 
+        [RANK1] [micro3] fwd_recv - 15:04:18.372        -> 2.403
+        [RANK1] [micro3] forward  - 15:04:18.378 *2.403 => output
+        [RANK1] [micro3] fwd_send - 15:04:18.381           fwd-end-> 
+        [RANK1] [micro0] backward - 15:04:18.382 *loss => 0.004
+        [RANK1] [micro0] bwd_send - 15:04:18.389 
+        [RANK0] [micro0] bwd_recv - 15:04:18.378        -> 0.004
+        [RANK1] [micro1] backward - 15:04:18.390 *loss => 0.004
+        [RANK1] [micro1] bwd_send - 15:04:18.399 
+        [RANK0] [micro0] backward - 15:04:18.390 *0.004 => bwd-end
+        [RANK0] [micro0] bwd_send - 15:04:18.407 
+        [RANK1] [micro2] backward - 15:04:18.399 *loss => 0.004
+        [RANK0] [micro1] bwd_recv - 15:04:18.408        -> 0.004
+        [RANK1] [micro2] bwd_send - 15:04:18.408 
+        [RANK1] [micro3] backward - 15:04:18.409 *loss => 0.004
+        [RANK1] [micro3] bwd_send - 15:04:18.417 
+        [RANK1] update_losses - 15:04:18.418
+        [RANK1] finished - 15:04:18.419
+        [RANK0] [micro1] backward - 15:04:18.408 *0.004 => bwd-end
+        [RANK0] [micro1] bwd_send - 15:04:18.421 
+        [RANK0] [micro2] bwd_recv - 15:04:18.422        -> 0.004
+        [RANK0] [micro2] backward - 15:04:18.422 *0.004 => bwd-end
+        [RANK0] [micro2] bwd_send - 15:04:18.435 
+        [RANK0] [micro3] bwd_recv - 15:04:18.436        -> 0.004
+        [RANK0] [micro3] backward - 15:04:18.437 *0.004 => bwd-end
+        [RANK0] [micro3] bwd_send - 15:04:18.450 
+        [RANK0] update_losses - 15:04:18.450
+        [RANK0] finished - 15:04:18.451
+[RANK1] forward DONE
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:04:19.176 *input => 1.286
+        [RANK0] [micro0] fwd_send - 15:04:19.185           1.286-> 
+        [RANK1] [micro0] fwd_recv - 15:04:19.180        -> 1.286
+        [RANK1] [micro0] forward  - 15:04:19.185 *1.286 => output
+        [RANK1] [micro0] fwd_send - 15:04:19.189           fwd-end-> 
+        [RANK0] [micro1] forward  - 15:04:19.185 *input => 1.564
+        [RANK0] [micro1] fwd_send - 15:04:19.194           1.564-> 
+        [RANK1] [micro1] fwd_recv - 15:04:19.189        -> 1.564
+        [RANK1] [micro1] forward  - 15:04:19.195 *1.564 => output
+        [RANK1] [micro1] fwd_send - 15:04:19.198           fwd-end-> 
+        [RANK0] [micro2] forward  - 15:04:19.194 *input => 0.000
+        [RANK0] [micro2] fwd_send - 15:04:19.203           0.000-> 
+        [RANK1] [micro2] fwd_recv - 15:04:19.198        -> 0.000
+        [RANK1] [micro2] forward  - 15:04:19.204 *0.000 => output
+        [RANK1] [micro2] fwd_send - 15:04:19.207           fwd-end-> 
+        [RANK0] [micro3] forward  - 15:04:19.204 *input => 1.742
+        [RANK0] [micro3] fwd_send - 15:04:19.214           1.742-> 
+        [RANK1] [micro3] fwd_recv - 15:04:19.208        -> 1.742
+        [RANK1] [micro3] forward  - 15:04:19.215 *1.742 => output
+        [RANK1] [micro3] fwd_send - 15:04:19.218           fwd-end-> 
+        [RANK1] [micro0] backward - 15:04:19.219 *loss => 0.004
+        [RANK1] [micro0] bwd_send - 15:04:19.226 
+        [RANK0] [micro0] bwd_recv - 15:04:19.215        -> 0.004
+        [RANK1] [micro1] backward - 15:04:19.226 *loss => 0.004
+        [RANK1] [micro1] bwd_send - 15:04:19.236 
+        [RANK0] [micro0] backward - 15:04:19.227 *0.004 => bwd-end
+        [RANK0] [micro0] bwd_send - 15:04:19.245 
+        [RANK1] [micro2] backward - 15:04:19.237 *loss => 0.004
+        [RANK1] [micro2] bwd_send - 15:04:19.246 
+        [RANK0] [micro1] bwd_recv - 15:04:19.246        -> 0.004
+        [RANK1] [micro3] backward - 15:04:19.247 *loss => 0.004
+        [RANK1] [micro3] bwd_send - 15:04:19.256 
+        [RANK1] update_losses - 15:04:19.257
+        [RANK1] finished - 15:04:19.258
+        [RANK0] [micro1] backward - 15:04:19.247 *0.004 => bwd-end
+        [RANK0] [micro1] bwd_send - 15:04:19.260 
+        [RANK0] [micro2] bwd_recv - 15:04:19.262        -> 0.004
+        [RANK0] [micro2] backward - 15:04:19.262 *0.004 => bwd-end
+        [RANK0] [micro2] bwd_send - 15:04:19.275 
+        [RANK0] [micro3] bwd_recv - 15:04:19.277        -> 0.004
+        [RANK0] [micro3] backward - 15:04:19.277 *0.004 => bwd-end
+        [RANK0] [micro3] bwd_send - 15:04:19.291 
+        [RANK0] update_losses - 15:04:19.292
+        [RANK0] finished - 15:04:19.292
+[RANK1] forward DONE
+[RANK0] forward - torch.Size([128, 3, 32, 32])
+        [RANK0] [micro0] forward  - 15:19:33.199 *input => 0.670
+        [RANK0] [micro0] fwd_send - 15:19:33.209           0.670-> 
+        [RANK0] [micro1] forward  - 15:19:33.210 *input => 2.184
+        [RANK0] [micro1] fwd_send - 15:19:33.220           2.184-> 
+        [RANK0] [micro2] forward  - 15:19:33.220 *input => 0.000
+        [RANK0] [micro2] fwd_send - 15:19:33.229           0.000-> 
+        [RANK0] [micro3] forward  - 15:19:33.230 *input => 1.790
+        [RANK0] [micro3] fwd_send - 15:19:33.239           1.790-> 
